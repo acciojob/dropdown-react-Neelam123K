@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import "../styles/App.css";
+import "./../styles/App.css";
 
+// Your given dataset
 const states = [
   {
     name: "Madhya Pradesh",
@@ -68,58 +69,79 @@ const states = [
   },
 ];
 
-const App = () => {
-  const [selectedState, setSelectedState] = useState(states[0]);
-  const [selectedCity, setSelectedCity] = useState(selectedState.city[0]);
-  const [selectedLandmark, setSelectedLandmark] = useState(selectedCity.landmarks[0]);
+function App() {
+  const [selectedStateIndex, setSelectedStateIndex] = useState(0);
+  const [selectedCityIndex, setSelectedCityIndex] = useState(0);
+  const [selectedLandmarkIndex, setSelectedLandmarkIndex] = useState(0);
+
+  const cities = states[selectedStateIndex].city;
+  const landmarks = cities[selectedCityIndex].landmarks;
 
   const handleStateChange = (e) => {
-    const state = states[e.target.value];
-    setSelectedState(state);
-    setSelectedCity(state.city[0]);
-    setSelectedLandmark(state.city[0].landmarks[0]);
+    setSelectedStateIndex(Number(e.target.value));
+    setSelectedCityIndex(0);
+    setSelectedLandmarkIndex(0);
   };
 
   const handleCityChange = (e) => {
-    const city = selectedState.city[e.target.value];
-    setSelectedCity(city);
-    setSelectedLandmark(city.landmarks[0]);
+    setSelectedCityIndex(Number(e.target.value));
+    setSelectedLandmarkIndex(0);
   };
 
   const handleLandmarkChange = (e) => {
-    const landmark = selectedCity.landmarks[e.target.value];
-    setSelectedLandmark(landmark);
+    setSelectedLandmarkIndex(Number(e.target.value));
   };
 
   return (
-    <div>
-      <h1>Dropdown React</h1>
-      <select id="state" onChange={handleStateChange}>
+    <div id="main">
+      <h1>Dynamic Dropdown - State, City, Landmark</h1>
+
+      {/* State Dropdown */}
+      <select id="state" value={selectedStateIndex} onChange={handleStateChange}>
         {states.map((state, index) => (
-          <option key={index} value={index}>{state.name}</option>
+          <option key={index} value={index}>
+            {state.name}
+          </option>
         ))}
       </select>
 
-      <select id="city" onChange={handleCityChange}>
-        {selectedState.city.map((city, index) => (
-          <option key={index} value={index}>{city.name}</option>
+      {/* City Dropdown */}
+      <select id="city" value={selectedCityIndex} onChange={handleCityChange}>
+        {cities.map((city, index) => (
+          <option key={index} value={index}>
+            {city.name}
+          </option>
         ))}
       </select>
 
-      <select id="landmark" onChange={handleLandmarkChange}>
-        {selectedCity.landmarks.map((landmark, index) => (
-          <option key={index} value={index}>{landmark.name}</option>
+      {/* Landmark Dropdown */}
+      <select
+        id="landmark"
+        value={selectedLandmarkIndex}
+        onChange={handleLandmarkChange}
+      >
+        {landmarks.map((landmark, index) => (
+          <option key={index} value={index}>
+            {landmark.name}
+          </option>
         ))}
       </select>
 
-      <div id="state-name">{selectedState.name}</div>
-      <div id="state-description">{selectedState.description}</div>
-      <div id="city-name">{selectedCity.name}</div>
-      <div id="city-description">{selectedCity.description}</div>
-      <div id="landmark-name">{selectedLandmark.name}</div>
-      <div id="landmark-description">{selectedLandmark.description}</div>
+      {/* Display Details */}
+      <div className="details">
+        <h2 id="state-name">{states[selectedStateIndex].name}</h2>
+        <p id="state-description">{states[selectedStateIndex].description}</p>
+
+        <h3 id="city-name">{cities[selectedCityIndex].name}</h3>
+        <p id="city-description">{cities[selectedCityIndex].description}</p>
+
+        <h4 id="landmark-name">{landmarks[selectedLandmarkIndex].name}</h4>
+        <p id="landmark-description">
+          {landmarks[selectedLandmarkIndex].description}
+        </p>
+      </div>
     </div>
   );
-};
+}
 
 export default App;
