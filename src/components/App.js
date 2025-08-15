@@ -96,50 +96,43 @@ function App() {
     <div id="main">
       <h1>Dynamic Dropdown - State, City, Landmark</h1>
 
-      {/* State Dropdown */}
-      <select id="state" value={selectedStateIndex} onChange={handleStateChange}>
-        {states.map((state, index) => (
-          <option key={index} value={index}>
-            {state.name}
-          </option>
-        ))}
-      </select>
+      {/* Dropdowns */}
+<select id="state" value={selectedStateIndex} onChange={handleStateChange}>
+  {states.map((state, index) => (
+    <option key={index} value={index}>
+      {state.name}
+    </option>
+  ))}
+</select>
 
-      {/* City Dropdown */}
-      <select id="city" value={selectedCityIndex} onChange={handleCityChange}>
-        {cities.map((city, index) => (
-          <option key={index} value={index}>
-            {city.name}
-          </option>
-        ))}
-      </select>
+<select id="city" value={selectedCityIndex} onChange={handleCityChange}>
+  {cities.map((city, index) => (
+    <option key={index} value={index}>
+      {city.name}
+    </option>
+  ))}
+</select>
 
-      {/* Landmark Dropdown */}
-      <select
-        id="landmark"
-        value={selectedLandmarkIndex}
-        onChange={handleLandmarkChange}
-      >
-        {landmarks.map((landmark, index) => (
-          <option key={index} value={index}>
-            {landmark.name}
-          </option>
-        ))}
-      </select>
+<select id="landmark" value={selectedLandmarkIndex} onChange={handleLandmarkChange}>
+  {landmarks.map((landmark, index) => (
+    <option key={index} value={index}>
+      {landmark.name}
+    </option>
+  ))}
+</select>
 
-      {/* Display Details */}
-      <div className="details">
-        <h2 id="state-name">{states[selectedStateIndex].name}</h2>
-        <p id="state-description">{states[selectedStateIndex].description}</p>
+{/* Titles to match Cypress */}
+<h2 id="state-title">{states[selectedStateIndex].name}</h2>
+<p id="state-description">{states[selectedStateIndex].description}</p>
 
-        <h3 id="city-name">{cities[selectedCityIndex].name}</h3>
-        <p id="city-description">{cities[selectedCityIndex].description}</p>
+<h3 id="city-title">{cities[selectedCityIndex].name}</h3>
+<p id="city-description">{cities[selectedCityIndex].description}</p>
 
-        <h4 id="landmark-name">{landmarks[selectedLandmarkIndex].name}</h4>
-        <p id="landmark-description">
-          {landmarks[selectedLandmarkIndex].description}
-        </p>
-      </div>
+<h4 id="landmark-title">{landmarks[selectedLandmarkIndex].name}</h4>
+<p id="landmark-description">
+  {landmarks[selectedLandmarkIndex].description}
+</p>
+
     </div>
   );
 }
