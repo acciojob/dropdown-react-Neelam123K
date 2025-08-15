@@ -11,7 +11,7 @@ const states = [
       {
         name: "Indore",
         description:
-          "Indore is a city in west-central India. It’s known for the 7-story Rajwada Palace and the Lal Baag Palace, which date back to Indore’s 19th-century Holkar dynasty.",
+          "Indore is a city in west-central India. It\'s known for the 7-story Rajwada Palace and the Lal Baag Palace, which date back to Indore\'s 19th-century Holkar dynasty.",
         landmarks: [
           {
             name: "Mhow",
@@ -122,7 +122,7 @@ function App() {
 </select>
 
 {/* Titles to match Cypress */}
-<h2 id="state-title">{states[selectedStateIndex].name}</h2>
+<h4 id="state-title">{states[selectedStateIndex].name}</h4>
 <p id="state-description">{states[selectedStateIndex].description}</p>
 
 <h3 id="city-title">{cities[selectedCityIndex].name}</h3>
