@@ -220,22 +220,22 @@ const states = [
 ];
 
 function App() {
-  // Track selected indexes for state, city, landmark
-  const [stateIndex, setStateIndex] = useState(0);
+
+	const [stateIndex, setStateIndex] = useState(0);
   const [cityIndex, setCityIndex] = useState(0);
   const [landmarkIndex, setLandmarkIndex] = useState(0);
 
   const handleStateChange = (e) => {
     const newStateIndex = parseInt(e.target.value, 10);
     setStateIndex(newStateIndex);
-    setCityIndex(0); // reset city to first in new state
-    setLandmarkIndex(0); // reset landmark to first in new city
+    setCityIndex(0); 
+    setLandmarkIndex(0); 
   };
 
   const handleCityChange = (e) => {
     const newCityIndex = parseInt(e.target.value, 10);
     setCityIndex(newCityIndex);
-    setLandmarkIndex(0); // reset landmark to first in new city
+    setLandmarkIndex(0); 
   };
 
   const handleLandmarkChange = (e) => {
@@ -248,7 +248,6 @@ function App() {
 
   return (
     <div id="main">
-      {/* State Dropdown */}
       <select id="state" value={stateIndex} onChange={handleStateChange}>
         {states.map((st, idx) => (
           <option key={idx} value={idx}>
@@ -257,7 +256,6 @@ function App() {
         ))}
       </select>
 
-      {/* City Dropdown */}
       <select id="city" value={cityIndex} onChange={handleCityChange}>
         {selectedState.city.map((ct, idx) => (
           <option key={idx} value={idx}>
@@ -266,7 +264,6 @@ function App() {
         ))}
       </select>
 
-      {/* Landmark Dropdown */}
       <select
         id="landmark"
         value={landmarkIndex}
